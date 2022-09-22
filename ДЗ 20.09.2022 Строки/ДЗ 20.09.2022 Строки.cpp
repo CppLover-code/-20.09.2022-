@@ -92,21 +92,15 @@ void check_words(char* str)
     size_t len = strlen(str);  // определение размера массива
 
     
-    int m = 0;
     for (size_t i = 0; i < len; i++)
     {
-        
-
-        if ((int(str[i]) >= 65 && int(str[i]) <= 90) || (int(str[i]) >= 97 && int(str[i]) <= 122))
+        if ((int(str[i]) >= 65 && int(str[i]) <= 90) || (int(str[i]) >= 97 && int(str[i]) <= 122) &&                 // если int(str[i]) - это буква И
+            (((int(str[i + 1]) >= 0 && int(str[i + 1]) < 65) || (int(str[i + 1]) >= 90 && int(str[i + 1]) <= 96) ||  // (int(str[i + 1]) - др. символ ИЛИ
+                (int(str[i + 1]) >= 123 && int(str[i + 1]) <= 127) || int(str[i]) == len - 1)))                      // int(str[i]) - это последний символ массива,
         {
-            m++;
+            word++;                                                                                                  // то кол-во слов увеличиваем
         }
-        else m = 0;
-
-        if (m == 0 && (int(str[i + 1]) >= 65 && int(str[i + 1]) <= 90) || (int(str[i + 1]) >= 97 && int(str[i + 1]) <= 122))
-        {
-            word++;
-        }
+        else continue;                                                                                               // иначе - переходим к след. итерации цикла
     }
     cout << "\n Words: " << word << "\n";
 }
